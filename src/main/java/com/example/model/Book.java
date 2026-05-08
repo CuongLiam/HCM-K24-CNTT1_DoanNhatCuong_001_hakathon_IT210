@@ -15,7 +15,6 @@ public class Book {
     private String author;
 
     @Max(value = 2, message = "số lượng phải >= 0")
-    @NotBlank(message = "ko được để trống")
     private Integer quantity;
 
     @NotBlank(message = "ko được để trống")
