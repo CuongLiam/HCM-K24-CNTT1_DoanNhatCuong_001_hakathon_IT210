@@ -46,18 +46,10 @@ public class BookController {
 
     @PostMapping("/save")
     public String save(
-//            @Valid
+            @Valid
             @ModelAttribute Book book,
             BindingResult result
     ) {
-        
-//        if (bookService.existsByEmail(customer.getEmail())) {
-//            result.rejectValue(
-//                    "email",
-//                    "error.customer",
-//                    "Email đã tồn tại"
-//            );
-//        }
 
         if (result.hasErrors()) {
             return "book-form";

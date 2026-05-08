@@ -31,33 +31,16 @@ public class BookService {
         Book old = findById(book.getId());
 
         if (old != null){
-            book.setTitle(book.getTitle());
-            book.setAuthor(book.getAuthor());
-            book.setQuantity(book.getQuantity());
-            book.setCoverImage(book.getCoverImage());
+            old.setTitle(book.getTitle());
+            old.setAuthor(book.getAuthor());
+            old.setQuantity(book.getQuantity());
+            old.setCoverImage(book.getCoverImage());
         }
     }
 
     public void delete(Long id) {
-        books.removeIf(c -> c.getId().equals(id));
+        books.removeIf(b -> b.getId().equals(id));
     }
-
-//    public boolean existsByEmail(String email) {
-//        return books.stream()
-//                .anyMatch(c ->
-//                        c.getEmail()
-//                                .equalsIgnoreCase(email));
-//    }
-//
-//    public boolean existsByEmailAndNotId(
-//            String email,
-//            Long id
-//    ) {
-//        return books.stream()
-//                .anyMatch(c ->
-//                        c.getEmail().equalsIgnoreCase(email)
-//                                && !c.getId().equals(id));
-//    }
 
     public List<Book> search(String keyword) {
 
