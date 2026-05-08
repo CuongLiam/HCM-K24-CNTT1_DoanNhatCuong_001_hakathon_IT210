@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Danh sách sách</title>
+
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td, th {
+            border: 1px solid black;
+            padding: 8px;
+        }
+
+        .top {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Danh sách sách</h1>
+
+<div class="top">
+
+    <a th:href="@{/books/create}">
+        Thêm mới
+    </a>
+
+    <form th:action="@{/books}" method="get">
+
+        <input type="text"
+               name="keyword"
+               placeholder="Tìm tên sách hoặc tác giả"
+               th:value="${keyword}">
+
+        <button type="submit">
+            Tìm kiếm
+        </button>
+
+    </form>
+
+</div>
+
+<p th:if="${#lists.isEmpty(books)}">
+    Chưa có sách nào trong hệ thống
+</p>
+
+<table th:unless="${#lists.isEmpty(books)}">
+
+    <tr>
+        <th>STT</th>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Quantity</th>
+        <th>Image</th>
+        <th>Actions</th>
+    </tr>
+
+    <tr th:each="b, stat : ${books}">
+
+        <td th:text="${stat.count}"></td>
+
+        <td th:text="${b.title}"></td>
+
+        <td th:text="${b.author}"></td>
+
+        <td th:text="${b.quantity}"></td>
+
+        <td th:text="${b.coverImage}"></td>
+
+        <td>
+
+            <a th:href="@{/books/edit/{id}(id=${c.id})}">
+                Sửa
+            </a>
+
+            <a th:href="@{/books/delete/{id}(id=${c.id})}"
+               onclick="return confirm('Xóa khách hàng này?')">
+                Xóa
+            </a>
+
+        </td>
+
+    </tr>
+
+</table>
+
+</body>
+</html>
